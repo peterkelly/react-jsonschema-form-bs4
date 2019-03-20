@@ -19,43 +19,41 @@ function CheckboxesWidget(props) {
   return (
     <div className="checkboxes" id={id}>
       {enumOptions.map((option, index) => {
+        const checkboxId = `${id}_${index}`;
         const checked = value.indexOf(option.value) !== -1;
         const itemDisabled =
           enumDisabled && enumDisabled.indexOf(option.value) != -1;
         const disabledCls =
           disabled || itemDisabled || readonly ? "disabled" : "";
         const checkbox = (
-          <span>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id={`${id}_${index}`}
-              checked={checked}
-              disabled={disabled || itemDisabled || readonly}
-              autoFocus={autofocus && index === 0}
-              onChange={event => {
-                const all = enumOptions.map(({ value }) => value);
-                if (event.target.checked) {
-                  onChange(selectValue(option.value, value, all));
-                } else {
-                  onChange(deselectValue(option.value, value));
-                }
-              }}
-            />
-            <span>{option.label}</span>
-          </span>
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id={checkboxId}
+            checked={checked}
+            disabled={disabled || itemDisabled || readonly}
+            autoFocus={autofocus && index === 0}
+            onChange={event => {
+              const all = enumOptions.map(({ value }) => value);
+              if (event.target.checked) {
+                onChange(selectValue(option.value, value, all));
+              } else {
+                onChange(deselectValue(option.value, value));
+              }
+            }}
+          />
         );
         return inline ? (
-          <div className={`form-check-inline ${disabledCls}`}>
+          <div className={`form-check-inline ${disabledCls}`} key={checkboxId}>
             {checkbox}
-            <label className="form-check-label" htmlFor={index}>
+            <label className="form-check-label" htmlFor={checkboxId}>
               {option.label}
             </label>
           </div>
         ) : (
-          <div className={`form-check ${disabledCls}`}>
+          <div className={`form-check ${disabledCls}`} key={checkboxId}>
             {checkbox}
-            <label className="form-check-label" htmlFor={index}>
+            <label className="form-check-label" htmlFor={checkboxId}>
               {option.label}
             </label>
           </div>
