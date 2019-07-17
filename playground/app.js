@@ -26,6 +26,8 @@ const liveSettingsSchema = {
   properties: {
     validate: { type: "boolean", title: "Live validation" },
     disable: { type: "boolean", title: "Disable whole form" },
+    omitExtraData: { type: "boolean", title: "Omit extra data" },
+    liveOmit: { type: "boolean", title: "Live omit" },
   },
 };
 const cmOptions = {
@@ -337,6 +339,8 @@ class App extends Component {
       liveSettings: {
         validate: true,
         disable: false,
+        omitExtraData: false,
+        liveOmit: false,
       },
       shareURL: null,
     };
@@ -471,47 +475,69 @@ class App extends Component {
               </div>
             </div>
           </div>
-          <div className="col-5">
-            {this.state.form && (
-              <Form
-                ArrayFieldTemplate={ArrayFieldTemplate}
-                ObjectFieldTemplate={ObjectFieldTemplate}
-                liveValidate={liveSettings.validate}
-                disabled={liveSettings.disable}
-                schema={schema}
-                uiSchema={uiSchema}
-                formData={formData}
-                onChange={this.onFormDataChange}
-                onSubmit={({ formData }, e) => {
-                  console.log("submitted formData", formData);
-                  console.log("submit event", e);
-                }}
-                fields={{ geo: GeoPosition }}
-                validate={validate}
-                onBlur={(id, value) =>
-                  console.log(`Touched ${id} with value ${value}`)
-                }
-                onFocus={(id, value) =>
-                  console.log(`Focused ${id} with value ${value}`)
-                }
-                transformErrors={transformErrors}
-                onError={log("errors")}>
-                <div className="row">
-                  <div className="col-3">
-                    <button className="btn btn-primary" type="submit">
-                      Submit
-                    </button>
-                  </div>
-                  <div className="col-9 text-right">
-                    <CopyLink
-                      shareURL={this.state.shareURL}
-                      onShare={this.onShare}
-                    />
-                  </div>
+        </div>
+        <div className="col-5">
+          {this.state.form && (
+            <Form
+              ArrayFieldTemplate={ArrayFieldTemplate}
+              ObjectFieldTemplate={ObjectFieldTemplate}
+              liveValidate={liveSettings.validate}
+              disabled={liveSettings.disable}
+              omitExtraData={liveSettings.omitExtraData}
+              schema={schema}
+              uiSchema={uiSchema}
+              formData={formData}
+              onChange={this.onFormDataChange}
+              onSubmit={({ formData }, e) => {
+                console.log("submitted formData", formData);
+                console.log("submit event", e);
+              }}
+              fields={{ geo: GeoPosition }}
+              validate={validate}
+              onBlur={(id, value) =>
+                console.log(`Touched ${id} with value ${value}`)
+              }
+              onFocus={(id, value) =>
+                console.log(`Focused ${id} with value ${value}`)
+              }
+              transformErrors={transformErrors}
+              onError={log("errors")}>
+              <div className="row">
+                <div className="col-3">
+                  <button className="btn btn-primary" type="submit">
+                    Submit
+                  </button>
+                </div>
+                <div className="col-9 text-right">
+                  <CopyLink
+                    shareURL={this.state.shareURL}
+                    onShare={this.onShare}
+                  />
+                </div>
                 </div>
               </Form>
             )}
           </div>
+        <div className="col-sm-12">
+          <p style={{ textAlign: "center" }}>
+            Powered by
+            <a href="https://github.com/mozilla-services/react-jsonschema-form">
+              react-jsonschema-form
+            </a>
+            . Bootstrap themes courtesy of{" "}
+            <a href="http://bootswatch.com/">Bootswatch</a> and{" "}
+            <a href="https://github.com/aalpern/bootstrap-solarized/">
+              bootstrap-solarized
+            </a>
+            .
+            {process.env.SHOW_NETLIFY_BADGE === "true" && (
+              <div style={{ float: "right" }}>
+                <a href="https://www.netlify.com">
+                  <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" />
+                </a>
+              </div>
+            )}
+          </p>
         </div>
       </div>
     );
