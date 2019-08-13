@@ -1,6 +1,6 @@
 {
   "name": "react-jsonschema-form-bs4",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "A simple React component capable of building HTML forms out of a JSON schema.",
   "scripts": {
     "build:lib": "rimraf lib && cross-env NODE_ENV=production babel -d lib/ src/",
@@ -30,9 +30,11 @@
     ]
   },
   "main": "lib/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "dist",
-    "lib"
+    "lib",
+    "types"
   ],
   "engineStrict": false,
   "engines": {
@@ -43,6 +45,8 @@
     "react": ">=15"
   },
   "dependencies": {
+    "@types/json-schema": "*",
+    "@types/react": "*",
     "@babel/runtime-corejs2": "^7.4.5",
     "ajv": "^6.7.0",
     "core-js": "^2.5.7",
@@ -111,14 +115,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mozilla-services/react-jsonschema-form.git"
+    "url": "git+https://github.com/peterkelly/react-jsonschema-form-bs4.git"
   },
-  "author": "Nicolas Perriault <nperriault@mozilla.com>",
+  "author": "Peter Kelly <peter@pmkelly.net>",
   "keywords": [
     "react",
     "form",
     "json-schema"
   ],
   "license": "Apache-2.0",
-  "homepage": "https://github.com/mozilla-services/react-jsonschema-form#readme"
+  "homepage": "https://github.com/peterkelly/react-jsonschema-form-bs4#readme"
 }

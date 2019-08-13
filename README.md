@@ -5,7 +5,7 @@ A port of [react-jsonschema-form](https://github.com/mozilla-services/react-json
 
 See the [main repository](https://github.com/mozilla-services/react-jsonschema-form#readme) for documentation.
 
-This version is based on react-jsonschema-form v1.5.0
+This version is based on react-jsonschema-form v1.7.0
 
 ## Installation
 
