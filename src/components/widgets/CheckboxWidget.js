@@ -69,7 +69,7 @@ function CheckboxWidget(props) {
           onBlur={onBlur && (event => onBlur(id, event.target.checked))}
           onFocus={onFocus && (event => onFocus(id, event.target.checked))}
         />
-        <label className="form-check-label" htmlFor="defaultCheck1">
+        <label className="form-check-label" htmlFor={id}>
           {label}
         </label>
       </div>
