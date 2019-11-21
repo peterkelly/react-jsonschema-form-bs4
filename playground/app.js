@@ -514,10 +514,10 @@ class App extends Component {
                     onShare={this.onShare}
                   />
                 </div>
-                </div>
-              </Form>
-            )}
-          </div>
+              </div>
+            </Form>
+          )}
+        </div>
         <div className="col-sm-12">
           <p style={{ textAlign: "center" }}>
             Powered by
